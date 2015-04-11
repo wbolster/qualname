@@ -48,31 +48,33 @@ def qualname(obj):
     if hasattr(obj, '__qualname__'):
         return obj.__qualname__
 
-    # For older Python version, things get complicated.
+    # For older Python versions, things get complicated.
+    # Obtain the filename and the line number where the
+    # class/method/function is defined.
     try:
         filename = inspect.getsourcefile(obj)
     except TypeError:
         return obj.__qualname__  # propagate error
-
     if inspect.isclass(obj):
         try:
             _, lineno = inspect.getsourcelines(obj)
         except (OSError, IOError):
             return obj.__qualname__  # propagate error
-
     elif inspect.isfunction(obj) or inspect.ismethod(obj):
-        # For Python 2, extract the function from unbound methods.
         if hasattr(obj, 'im_func'):
+            # Extract function from unbound method (Python 2)
             obj = obj.im_func
         try:
             code = obj.__code__
         except AttributeError:
             code = obj.func_code
         lineno = code.co_firstlineno
-
     else:
         return obj.__qualname__  # propagate error
 
+    # Re-parse the source file to figure out what the __qualname__
+    # should be by analysing the abstract syntax tree. Use a cache to
+    # avoid doing this more than once for the same file.
     qualnames = _cache.get(filename)
     if qualnames is None:
         with open(filename, 'r') as fp:
