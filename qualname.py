@@ -59,9 +59,9 @@ def qualname(obj):
             _, lineno = inspect.getsourcelines(obj)
         except (OSError, IOError):
             return obj.__name__
-    else:
-        # This is a function. For Python 2, extract the function from
-        # unbound methods.
+
+    elif inspect.isfunction(obj) or inspect.ismethod(obj):
+        # For Python 2, extract the function from unbound methods.
         if hasattr(obj, 'im_func'):
             obj = obj.im_func
         try:
