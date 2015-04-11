@@ -65,7 +65,11 @@ def qualname(obj):
         # unbound methods.
         if hasattr(obj, 'im_func'):
             obj = obj.im_func
-        lineno = obj.func_code.co_firstlineno
+        try:
+            code = obj.__code__
+        except AttributeError:
+            code = obj.func_code
+        lineno = code.co_firstlineno
 
     qualnames = _cache.get(filename)
     if qualnames is None:
