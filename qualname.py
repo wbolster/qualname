@@ -54,12 +54,12 @@ def qualname(obj):
     try:
         filename = inspect.getsourcefile(obj)
     except TypeError:
-        return obj.__qualname__  # propagate error
+        return obj.__qualname__  # raises a sensible error
     if inspect.isclass(obj):
         try:
             _, lineno = inspect.getsourcelines(obj)
         except (OSError, IOError):
-            return obj.__qualname__  # propagate error
+            return obj.__qualname__  # raises a sensible error
     elif inspect.isfunction(obj) or inspect.ismethod(obj):
         if hasattr(obj, 'im_func'):
             # Extract function from unbound method (Python 2)
@@ -70,7 +70,7 @@ def qualname(obj):
             code = obj.func_code
         lineno = code.co_firstlineno
     else:
-        return obj.__qualname__  # propagate error
+        return obj.__qualname__  # raises a sensible error
 
     # Re-parse the source file to figure out what the
     # __qualname__ should be by analysing the abstract
@@ -87,4 +87,4 @@ def qualname(obj):
     try:
         return qualnames[lineno]
     except KeyError:
-        return obj.__qualname__  # propagate error
+        return obj.__qualname__  # raises a sensible error
