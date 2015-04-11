@@ -41,12 +41,9 @@ def qualname(obj):
         return obj.__qualname__
 
     # For older Python version, things get complicated.
-    mod = inspect.getmodule(obj)
-    if mod is None:
-        return obj.__name__
-
-    filename = getattr(mod, '__file__', None)
-    if filename is None:
+    try:
+        filename = inspect.getsourcefile(obj)
+    except TypeError:
         return obj.__name__
 
     try:
