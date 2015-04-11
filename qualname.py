@@ -72,9 +72,10 @@ def qualname(obj):
     else:
         return obj.__qualname__  # propagate error
 
-    # Re-parse the source file to figure out what the __qualname__
-    # should be by analysing the abstract syntax tree. Use a cache to
-    # avoid doing this more than once for the same file.
+    # Re-parse the source file to figure out what the
+    # __qualname__ should be by analysing the abstract
+    # syntax tree. Use a cache to avoid doing this more
+    # than once for the same file.
     qualnames = _cache.get(filename)
     if qualnames is None:
         with open(filename, 'r') as fp:
