@@ -87,7 +87,7 @@ How does it work?
 Glad you ask.
 
 This module uses source code inspection to figure out how (nested) classes and
-functions are defined in order to determine the qualified name for it. That
+functions are defined in order to determine the qualified names for them. That
 means parsing the source file, and traversing the AST (abstract syntax tree).
 This sounds very hacky, and it is, but the Python interpreter itself does not
 have the necessary information, so this justifies extreme measures.
