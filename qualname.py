@@ -33,26 +33,26 @@ class _Visitor(ast.NodeVisitor):
         self.stack.pop()
 
 
-def qualname(cls):
+def qualname(obj):
     """Find out the qualified name for a class."""
 
     # For Python 3.3+, this is straight-forward.
-    if hasattr(cls, '__qualname__'):
-        return cls.__qualname__
+    if hasattr(obj, '__qualname__'):
+        return obj.__qualname__
 
     # For older Python version, things get complicated.
-    mod = inspect.getmodule(cls)
+    mod = inspect.getmodule(obj)
     if mod is None:
-        return cls.__name__
+        return obj.__name__
 
     filename = getattr(mod, '__file__', None)
     if filename is None:
-        return cls.__name__
+        return obj.__name__
 
     try:
-        lines, lineno = inspect.getsourcelines(cls)
+        lines, lineno = inspect.getsourcelines(obj)
     except (OSError, IOError):
-        return cls.__name__
+        return obj.__name__
 
     qualnames = _cache.get(filename)
     if qualnames is None:
@@ -65,6 +65,6 @@ def qualname(cls):
 
     qn = qualnames.get(lineno)
     if qn is None:
-        return cls.__name__
+        return obj.__name__
 
     return qn
