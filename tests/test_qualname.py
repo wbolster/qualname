@@ -25,8 +25,11 @@ def f():
 
 def test_nested_classes():
     assert qualname(C) == 'C'
-    assert qualname(C.f) == 'C.f'
     assert qualname(C.D) == 'C.D'
+
+
+def test_methods_in_nested_classes():
+    assert qualname(C.f) == 'C.f'
     assert qualname(C.D.g) == 'C.D.g'
 
 
