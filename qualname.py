@@ -54,8 +54,7 @@ def qualname(obj):
     except TypeError:
         return obj.__name__
 
-    if isinstance(obj, type):
-        # This is a class
+    if inspect.isclass(obj):
         try:
             _, lineno = inspect.getsourcelines(obj)
         except (OSError, IOError):
