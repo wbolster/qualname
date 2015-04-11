@@ -26,6 +26,14 @@ class _Visitor(ast.NodeVisitor):
         qn = ".".join(n for n in self.stack)
         self.qualnames[lineno] = qn
 
+    def visit_FunctionDef(self, node):
+        self.stack.append(node.name)
+        self.store_qualname(node.lineno)
+        self.stack.append('<locals>')
+        self.generic_visit(node)
+        self.stack.pop()
+        self.stack.pop()
+
     def visit_ClassDef(self, node):
         self.stack.append(node.name)
         self.store_qualname(node.lineno)
