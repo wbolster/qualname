@@ -8,7 +8,7 @@ setup(
     name='qualname',
     description="__qualname__ emulation for older Python versions",
     long_description=long_description,
-    version='0.0.1',
+    version='0.1.0',
     author="Wouter Bolsterlee",
     author_email="uws@xs4all.nl",
     url='https://github.com/wbolster/qualname',
