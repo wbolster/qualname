@@ -1,12 +1,5 @@
 """
 Module to find out the qualified name of a class.
-
-In Python 3, classes have a ``__qualname__`` property. Unfortunately,
-Python 2 does not have an obvious equivalent. This module uses source
-code inspection to figure out how a (nested) class is defined in order
-to determine the qualified name for it.
-
-https://www.python.org/dev/peps/pep-3155/
 """
 
 import ast

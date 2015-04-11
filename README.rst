@@ -72,3 +72,15 @@ have the necessary information, so this justifies extreme measures.
 Now that you know how it works, you'll also understand that this module only
 works when the source file is available. Fortunately this is the case in most
 circumstances.
+
+
+License
+=======
+
+BSD.
+
+
+Feedback? Issues?
+=================
+
+https://github.com/wbolster/qualname
