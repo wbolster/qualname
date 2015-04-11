@@ -33,11 +33,11 @@ class _Visitor(ast.NodeVisitor):
 def qualname(cls):
     """Find out the qualified name for a class."""
 
-    # For Python 3, this is straight-forward.
+    # For Python 3.3+, this is straight-forward.
     if hasattr(cls, '__qualname__'):
         return cls.__qualname__
 
-    # For Python 2, things get complicated.
+    # For older Python version, things get complicated.
     mod = inspect.getmodule(cls)
     if mod is None:
         return cls.__name__
