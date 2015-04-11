@@ -42,7 +42,7 @@ class _Visitor(ast.NodeVisitor):
 
 
 def qualname(obj):
-    """Find out the qualified name for a class."""
+    """Find out the qualified name for a class or function."""
 
     # For Python 3.3+, this is straight-forward.
     if hasattr(obj, '__qualname__'):
