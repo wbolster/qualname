@@ -22,10 +22,13 @@ class _Visitor(ast.NodeVisitor):
         self.stack = []
         self.qualnames = {}
 
+    def store_qualname(self, lineno):
+        qn = ".".join(n for n in self.stack)
+        self.qualnames[lineno] = qn
+
     def visit_ClassDef(self, node):
         self.stack.append(node.name)
-        qn = ".".join(n for n in self.stack)
-        self.qualnames[node.lineno] = qn
+        self.store_qualname(node.lineno)
         self.generic_visit(node)
         self.stack.pop()
 
