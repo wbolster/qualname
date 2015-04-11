@@ -5,16 +5,26 @@ Tests for the qualname module.
 from qualname import qualname
 
 
-# These examples come from
+# These examples are based on the examples from
 # https://www.python.org/dev/peps/pep-3155/
 
 class C(object):
+    @staticmethod
     def f():
         pass
 
     class D(object):
+        @staticmethod
         def g():
             pass
+
+        @staticmethod
+        def h():
+            def i():
+                def j():
+                    pass
+                return j
+            return i()
 
 
 def f():
@@ -36,3 +46,4 @@ def test_methods_in_nested_classes():
 def test_nested_functions():
     assert qualname(f) == 'f'
     assert qualname(f()) == 'f.<locals>.g'
+    assert qualname(C.D.h()) == 'C.D.h.<locals>.i.<locals>.j'
