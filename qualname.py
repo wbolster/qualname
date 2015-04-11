@@ -46,10 +46,18 @@ def qualname(obj):
     except TypeError:
         return obj.__name__
 
-    try:
-        lines, lineno = inspect.getsourcelines(obj)
-    except (OSError, IOError):
-        return obj.__name__
+    if isinstance(obj, type):
+        # This is a class
+        try:
+            _, lineno = inspect.getsourcelines(obj)
+        except (OSError, IOError):
+            return obj.__name__
+    else:
+        # This is a function. For Python 2, extract the function from
+        # unbound methods.
+        if hasattr(obj, 'im_func'):
+            obj = obj.im_func
+        lineno = obj.func_code.co_firstlineno
 
     qualnames = _cache.get(filename)
     if qualnames is None:
