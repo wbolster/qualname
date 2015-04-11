@@ -84,9 +84,7 @@ def qualname(obj):
         visitor = _Visitor()
         visitor.visit(node)
         _cache[filename] = qualnames = visitor.qualnames
-
-    qn = qualnames.get(lineno)
-    if qn is None:
+    try:
+        return qualnames[lineno]
+    except KeyError:
         return obj.__qualname__  # propagate error
-
-    return qn
