@@ -8,11 +8,11 @@ from qualname import qualname
 # These examples come from
 # https://www.python.org/dev/peps/pep-3155/
 
-class C:
+class C(object):
     def f():
         pass
 
-    class D:
+    class D(object):
         def g():
             pass
 
