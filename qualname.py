@@ -12,6 +12,7 @@ _cache = {}
 
 class _Visitor(ast.NodeVisitor):
     def __init__(self):
+        super(_Visitor, self).__init__()
         self.stack = []
         self.qualnames = {}
 
