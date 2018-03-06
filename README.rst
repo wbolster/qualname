@@ -10,23 +10,23 @@ __ https://www.python.org/dev/peps/pep-3155/
 .. image:: https://travis-ci.org/wbolster/qualname.svg?branch=master
    :target: https://travis-ci.org/wbolster/qualname
 
-.. image:: https://pypip.in/download/qualname/badge.svg
+.. image:: https://img.shields.io/pypi/dm/qualname.svg
    :target: https://pypi.python.org/pypi/qualname/
    :alt: Downloads
 
-.. image:: https://pypip.in/version/qualname/badge.svg
+.. image:: https://img.shields.io/pypi/v/qualname.svg
    :target: https://pypi.python.org/pypi/qualname/
    :alt: Latest Version
 
-.. image:: https://pypip.in/py_versions/qualname/badge.svg
+.. image:: https://img.shields.io/pypi/pyversions/qualname.svg
    :target: https://pypi.python.org/pypi/qualname/
    :alt: Supported Python versions
 
-.. image:: https://pypip.in/status/qualname/badge.svg
+.. image:: https://img.shields.io/pypi/status/qualname.svg
    :target: https://pypi.python.org/pypi/qualname/
    :alt: Development Status
 
-.. image:: https://pypip.in/license/qualname/badge.svg
+.. image:: https://img.shields.io/pypi/l/qualname.svg
    :target: https://pypi.python.org/pypi/qualname/
    :alt: License
 
