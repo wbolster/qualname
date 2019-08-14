@@ -49,6 +49,8 @@ def qualname(obj):
         filename = inspect.getsourcefile(obj)
     except TypeError:
         return obj.__qualname__  # raises a sensible error
+    if not filename:
+        return obj.__qualname__  # raises a sensible error
     if inspect.isclass(obj):
         try:
             _, lineno = inspect.getsourcelines(obj)
