@@ -47,8 +47,9 @@ def qualname(obj):
     # class/method/function is defined.
     try:
         filename = inspect.getsourcefile(obj)
-    except TypeError:
-        return obj.__qualname__  # raises a sensible error
+    except TypeError:  # getsourcefile fails for builtins, so fall back to name
+        return obj.__name__
+
     if not filename:
         return obj.__qualname__  # raises a sensible error
     if inspect.isclass(obj):
